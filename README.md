@@ -1,0 +1,2 @@
+- Need docker
+- Need protoc
