@@ -19,12 +19,14 @@ func hello(w http.ResponseWriter, req *http.Request) {
 
 	log.Printf("receiving: %v", body)
 
+	// parsing the payload is super simple
 	helloRequest := &pb.HelloRequest{}
 	err = proto.Unmarshal(body, helloRequest)
 	if err != nil {
 		log.Fatalln("Failed to parse HelloRequest", err)
 	}
 
+	// Building a response is also super simple.
 	fullName := helloRequest.GetFirstName() + " " + helloRequest.GetLastName()
 	helloResponse := &pb.HelloResponse{
 		FullName: fullName,
@@ -42,6 +44,7 @@ func hello(w http.ResponseWriter, req *http.Request) {
 
 	log.Printf("sending: %v", resp)
 	// Need to convert response to string to avoid byte[] format issue
+	// Sending the response in byte[] format
 	fmt.Fprint(w, string(resp))
 }
 
