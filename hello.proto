@@ -3,18 +3,21 @@ package hello;
 
 import "google/protobuf/timestamp.proto";
 
+// Shared component can be abstracted and reuse
 message Metadata {
   int32 f_name_letter_count = 1;
   int32 l_name_letter_count = 2;
   google.protobuf.Timestamp created_at = 3;
 }
 
+// Request payload for POST /hello
 message HelloRequest {
   string first_name = 1;
   string last_name = 2;
   Metadata metadata = 3;
 }
 
+// Response payload for POST /hello
 message HelloResponse {
   string full_name = 1;
   Metadata metadata = 2;

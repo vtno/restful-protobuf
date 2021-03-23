@@ -1,4 +1,6 @@
 FROM golang:1.15
+
+ENV GOPATH=/
 COPY . .
 RUN go mod tidy
 CMD ["go", "run", "main.go"] 
