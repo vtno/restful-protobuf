@@ -19,7 +19,12 @@ const opts = {
 
 console.log("Sending buffer: ", helloRequest.serializeBinary())
 
-axios.post("http://localhost:8080/hello", helloRequest.serializeBinary(), opts)
+// Use this of running outside of docker
+// const url = "http://localhost:8080/hello"
+
+const url = "http://host.docker.internal:8080/hello"
+
+axios.post(url, helloRequest.serializeBinary(), opts)
   .then(resp => {
     const arr = new Uint8Array(resp.data)
     const helloResponse = proto.hello.HelloResponse.deserializeBinary(arr)

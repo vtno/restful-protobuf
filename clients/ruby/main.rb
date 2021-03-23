@@ -12,7 +12,10 @@ p "Sending buffer: #{Hello::HelloRequest.encode(hello_request)}"
 class HttpClient
   include HTTParty
 
-  base_uri "http://localhost:8080"
+  # Use this if running outside of docker
+  # base_uri "http://localhost:8080"
+
+  base_uri "http://host.docker.internal:8080"
 end
 
 opts = { 
